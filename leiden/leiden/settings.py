@@ -33,14 +33,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'bootstrap3',
-    'registration',
-    'django_redis',
     'leiden',
     'acacia',
     'acacia.data',
     'acacia.meetnet',
     'acacia.data.knmi',
     'acacia.ahn',
+    'registration',
+    'django_redis',
 ]
 
 MIDDLEWARE = [
