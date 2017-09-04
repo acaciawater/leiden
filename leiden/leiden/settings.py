@@ -16,27 +16,31 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4i3gw^h+vmazy(27f*x1zl)75gzh*z!7z#f00!0p!i0r*@fs)#'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['.acaciadata.com','localhost']
 
 # Application definition
-
 INSTALLED_APPS = [
+    #'grappelli',
+    'polymorphic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
+    'bootstrap3',
+    'registration',
+    'django_redis',
+    'leiden',
+    'acacia',
+    'acacia.data',
+    'acacia.meetnet',
+    'acacia.data.knmi',
+    'acacia.ahn',
 ]
 
 MIDDLEWARE = [
@@ -70,17 +74,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'leiden.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -103,9 +96,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl-nl'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET'
 
 USE_I18N = True
 
@@ -118,3 +111,102 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EXPORT_URL = '/export/'
+EXPORT_ROOT = os.path.join(BASE_DIR, 'export')
+
+UPLOAD_DATAFILES = 'datafiles' 
+UPLOAD_THUMBNAILS = 'thumbnails' 
+UPLOAD_IMAGES = 'images' 
+
+# Grapelli admin
+GRAPPELLI_ADMIN_TITLE='Beheer van grondwatermeetnet Gemeente Leiden'
+
+# registration stuff
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/data/'
+
+LOGGING_ROOT = os.path.join(BASE_DIR, 'logs')
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(LOGGING_ROOT, 'acacia.log'),
+            'when': 'D',
+            'interval': 1, # every day a new file
+            'backupCount': 0,
+            'formatter': 'default'
+        },
+        'update': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(LOGGING_ROOT, 'update.log'),
+            'when': 'D',
+            'interval': 1, # every day a new file
+            'backupCount': 0,
+            'formatter': 'update'
+        },
+        'upload': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOGGING_ROOT, 'upload.log'),
+            'maxBytes': 10000,
+            'backupCount': 0,
+            'formatter': 'default'
+        },
+        'django': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(LOGGING_ROOT, 'django.log'),
+            'when': 'D',
+            'interval': 1, # every day a new file
+            'backupCount': 0,
+        },
+    },
+    'formatters': {
+        'default': {
+            'format': '%(levelname)s %(asctime)s %(name)s: %(message)s'
+        },
+        'update' : {
+            'format': '%(levelname)s %(asctime)s %(datasource)s: %(message)s'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['django'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'acacia': {
+            'handlers': ['file',],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'leiden': {
+            'handlers': ['file',],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'upload': {
+            'handlers': ['upload',],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'update' : {
+            'handlers': ['update', ],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}
+
+from secrets import *

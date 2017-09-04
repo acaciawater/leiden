@@ -13,9 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
+
+
+from django.conf.urls.static import static
+from django.conf import settings
+from views import HomeView
+
+urlpatterns = [
+    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^data/', include('acacia.data.urls',namespace='acacia')),
+    url(r'^net/', include('acacia.meetnet.urls',namespace='meetnet')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('registration.backends.default.urls')),    
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.EXPORT_URL, document_root=settings.EXPORT_ROOT)
