@@ -13,6 +13,7 @@ django-grappelli==2.10.1
 django-polymorphic==1.2
 django-redis==4.8.0
 django-registration==2.2
+django-smart-selects==1.5.2
 django-tastypie==0.13.3
 docutils==0.13.1
 enum34==1.1.6
@@ -35,12 +36,12 @@ pycparser==2.17
 Pygments==2.2.0
 pyOpenSSL==17.0.0
 pyparsing==2.2.0
-python-dateutil==2.6.0
+python-dateutil==2.6.1
 python-mimeparse==1.6.0
 pytz==2017.2
 redis==2.10.5
 requests==2.13.0
-scipy==0.19.0
+scipy==0.19.1
 simplejson==3.11.1
 six==1.10.0
 snowballstemmer==1.2.1
