@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -148,14 +149,10 @@ LOGGING = {
             'backupCount': 0,
             'formatter': 'default'
         },
-        'update': {
+        'console': {
             'level': 'DEBUG',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(LOGGING_ROOT, 'update.log'),
-            'when': 'D',
-            'interval': 1, # every day a new file
-            'backupCount': 0,
-            'formatter': 'update'
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout
         },
         'upload': {
             'level': 'DEBUG',
@@ -193,21 +190,16 @@ LOGGING = {
             'level': 'WARNING',
             'propagate': True,
         },
-        'leiden': {
-            'handlers': ['file',],
-            'level': 'WARNING',
+        'leiden.management': {
+            'handlers': ['console',],
+            'level': 'INFO',
             'propagate': True,
         },
         'upload': {
             'handlers': ['upload',],
             'level': 'WARNING',
             'propagate': True,
-        },
-        'update' : {
-            'handlers': ['update', ],
-            'level': 'WARNING',
-            'propagate': True,
-        },
+        }
     },
 }
 
