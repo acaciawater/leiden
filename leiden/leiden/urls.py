@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from leiden.views import well_locations
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^data/', include('acacia.data.urls',namespace='acacia')),
     url(r'^net/', include('acacia.meetnet.urls',namespace='meetnet')),
+    url(r'^locs/',well_locations,name='locs'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),    
 ]
