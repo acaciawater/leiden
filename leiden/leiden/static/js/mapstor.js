@@ -65,7 +65,7 @@ var redBullet = L.icon({
 });
 
 var theMap = null;
-var markers = [];
+var markers = []; // Should be associative array: {} ??
 
 function addMarkers(map,zoom) {
 	$.getJSON('/locs', function(data) {
@@ -77,10 +77,14 @@ function addMarkers(map,zoom) {
 			marker.bindTooltip(val.name,{permanent:true,className:"label",opacity:0.7,direction:"top",offset:[0,-10]});
 			marker.on("click", function(e) {
 				var popup = e.target.getPopup();
-			    $.get("/pop/"+val.id).done(function(data) {
-			        popup.setContent(data);
-			        popup.update();
-			    });
+			    $.get("/pop/"+val.id)
+				    .done(function(data) {
+				        popup.setContent(data);
+				        popup.update();
+				    })
+				    .fail(function() {
+				    	popup.closePopup();
+				    });
 			});
 			marker.addTo(map);
 			bounds.extend(marker.getLatLng());
