@@ -1,0 +1,3 @@
+<h4><a href="{% url 'meetnet:well-detail' object.id %}">Waarnemingsput {{object}}</a></h4>
+<p>{{object.full_address}}</p>
+{% if object.description %}<p>{{object.description}}</p>{%endif%}

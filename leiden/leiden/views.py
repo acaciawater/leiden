@@ -7,6 +7,7 @@ from acacia.meetnet.views import NetworkView
 from acacia.meetnet.models import Network, Well
 from django.contrib.gis.gdal.srs import SpatialReference, CoordTransform 
 from django.http.response import JsonResponse, HttpResponseServerError
+from django.views.generic.detail import DetailView
 
 class HomeView(NetworkView):
     template_name = 'leiden/leaflet_map.html'
@@ -18,6 +19,11 @@ class HomeView(NetworkView):
     def get_object(self):
         return Network.objects.first()
 
+class PopupView(DetailView):
+    """ returns html response for leaflet popup """
+    model = Well
+    template_name = 'leiden/popup.html'
+    
 def well_locations(request):
     """ return json response with well locations
     """
