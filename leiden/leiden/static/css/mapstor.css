@@ -10,6 +10,11 @@ html, body, .wrapper, .full {
 	overflow-y: auto;
 }
 
+#map {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
 .adjust {
 	margin: -10px 10px;
 }
