@@ -203,4 +203,4 @@ LOGGING = {
     },
 }
 
-from secrets import *
+from leiden.secrets import *

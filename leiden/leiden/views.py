@@ -39,6 +39,6 @@ def well_locations(request):
             pnt.transform(trans)
             result.append({'id': p.id, 'name': p.name, 'nitg': p.nitg, 'description': p.description, 'lon': pnt.x, 'lat': pnt.y})
         except Exception as e:
-            return HttpResponseServerError(unicode(e))
+            return HttpResponseServerError(str(e))
     return JsonResponse(result,safe=False)
     

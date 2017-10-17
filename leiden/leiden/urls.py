@@ -24,11 +24,10 @@ urlpatterns = [
 
 from django.conf.urls.static import static
 from django.conf import settings
-from views import HomeView
+from .views import HomeView
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^data/', include('acacia.data.urls',namespace='acacia')),
     url(r'^net/', include('acacia.meetnet.urls',namespace='meetnet')),
     url(r'^locs/',well_locations,name='locs'),
