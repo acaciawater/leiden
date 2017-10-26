@@ -15,16 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from leiden.views import well_locations, PopupView
-
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-]
-
-
 from django.conf.urls.static import static
 from django.conf import settings
-from views import HomeView
+from .views import well_locations, PopupView, HomeView
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
@@ -34,9 +27,15 @@ urlpatterns = [
     url(r'^locs/',well_locations,name='locs'),
     url(r'^pop/(?P<pk>\d+)', PopupView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.default.urls')),    
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.EXPORT_URL, document_root=settings.EXPORT_ROOT)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

@@ -128,9 +128,10 @@ function hideMarker(m) {
 /**
  * Initializes leaflet map
  * @param div where map will be placed
+ * @options initial centerpoint and zoomlevel
  * @returns the map
  */
-function initMap(div) {
+function initMap(div,options) {
 	var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
  		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -180,10 +181,7 @@ function initMap(div) {
 		opacity: 0.5
 	});
 	
-	var map = L.map(div,{
-		center: [52.15478, 4.48565],
-		zoom: 12
-		});
+	var map = L.map(div,options);
 
  	baseMaps = {'Openstreetmap': osm, 'Google roads': roads, 'Google satellite': satellite, 'ESRI topo': topo, 'ESRI imagery': imagery};
 	overlayMaps = {'Ontwatering': ontwatering, 'Bodemkaart': bodemkaart, 'AHN2 (5m)': ahn25};

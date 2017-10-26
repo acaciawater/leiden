@@ -8,12 +8,17 @@ from acacia.meetnet.models import Network, Well
 from django.contrib.gis.gdal.srs import SpatialReference, CoordTransform 
 from django.http.response import JsonResponse, HttpResponseServerError
 from django.views.generic.detail import DetailView
+import json
 
 class HomeView(NetworkView):
-    template_name = 'leiden/leaflet_map.html'
+    template_name = 'leiden/home.html'
 
     def get_context_data(self, **kwargs):
         context = NetworkView.get_context_data(self, **kwargs)
+        options = {
+            'center': [52.15478, 4.48565],
+            'zoom': 12 }
+        context['options'] = json.dumps(options)
         return context
 
     def get_object(self):

@@ -25,7 +25,7 @@ ALLOWED_HOSTS = ['.acaciadata.com','localhost']
 
 # Application definition
 INSTALLED_APPS = [
-    #'grappelli',
+    'grappelli',
     'polymorphic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.gis',
+    'debug_toolbar',
     'bootstrap3',
     'leiden',
     'acacia',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -110,9 +112,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -131,7 +130,7 @@ GRAPPELLI_ADMIN_TITLE='Beheer van grondwatermeetnet Gemeente Leiden'
 
 # registration stuff
 ACCOUNT_ACTIVATION_DAYS = 7
-LOGIN_REDIRECT_URL = '/data/'
+LOGIN_REDIRECT_URL = '/'
 
 LOGGING_ROOT = os.path.join(BASE_DIR, 'logs')
 
