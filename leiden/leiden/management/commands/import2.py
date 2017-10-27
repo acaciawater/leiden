@@ -4,7 +4,8 @@ Created on Oct 24, 2017
 
 @author: theo
 '''
-from acacia.meetnet.models import Network, Well, Datalogger, LoggerPos
+from acacia.meetnet.models import Network, Well, Datalogger,\
+    LoggerDatasource
 from acacia.data.models import Project
 from django.contrib.gis.geos import Point
 from acacia.data.util import RDNEW
@@ -14,6 +15,8 @@ import csv
 from acacia.meetnet.util import register_well, register_screen
 from datetime import datetime
 from django.conf import settings
+from acacia.data.models import Generator
+from django.contrib.auth.models import User
 logger = logging.getLogger(__name__)
 
 def asfloat(x):
@@ -32,6 +35,8 @@ class Command(BaseCommand):
         files = options['files']
         net = Network.objects.first()
         prj = Project.objects.first()
+        ellitrack = Generator.objects.get(name='Ellitrack')
+        admin = User.objects.get(username='theo')
         for fname in files:
             logger.info('Importing wells from {}'.format(fname))
             with open(fname) as f:
@@ -78,21 +83,36 @@ class Command(BaseCommand):
                             else:
                                 logger.info('Updated {}'.format(pos))
 
-                            ds, created = datalogger.loggerdatasource_set.update_or_create(
+                            ds, created = LoggerDatasource.objects.update_or_create(
+                                logger = datalogger,
                                 name = serial,
                                 defaults={'description': 'Ellitrack datalogger serienummer {}'.format(serial),
                                           'meetlocatie': screen.mloc,
                                           'timezone': 'Europe/Amsterdam',
+                                          'user': admin,
+                                          'generator': ellitrack,
                                           'url': settings.FTP_URL,
                                           'username': settings.FTP_USERNAME,
                                           'password': settings.FTP_PASSWORD,
                                           })
                             if created:
+                                ds.locations.add(screen.mloc)
                                 logger.info('Created datasource {}'.format(ds))
 
-                            ds.download()
-                            ds.update_parameters()
-                            
+                            result = ds.download()
+                            if result:
+                                # download succeeded, create timeseries
+                                ds.update_parameters()
+                                for p in ds.parameter_set.all():
+                                    series, created = p.series_set.get_or_create(
+                                        mlocatie = screen.mloc, 
+                                        name = p.name, 
+                                        defaults = {'description': p.description, 
+                                                    'unit': p.unit, 
+                                                    'user': admin})
+                                    if created:
+                                        logger.info('Created timeseries {}'.format(series))
+                                    series.update()
                     except Exception as e:
                         logger.error('{}: {}'.format(name,e))
                 
