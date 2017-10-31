@@ -9,6 +9,7 @@ from django.contrib.gis.gdal.srs import SpatialReference, CoordTransform
 from django.http.response import JsonResponse, HttpResponseServerError
 from django.views.generic.detail import DetailView
 import json
+from django.conf import settings
 
 class HomeView(NetworkView):
     template_name = 'leiden/home.html'
@@ -18,6 +19,7 @@ class HomeView(NetworkView):
         options = {
             'center': [52.15478, 4.48565],
             'zoom': 12 }
+        context['api_key'] = settings.GOOGLE_MAPS_API_KEY
         context['options'] = json.dumps(options)
         return context
 
