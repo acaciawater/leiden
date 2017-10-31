@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'debug_toolbar',
     'bootstrap3',
-    'leiden',
+    'leiden.apps.LeidenConfig',
     'acacia',
     'acacia.data',
     'acacia.meetnet',
