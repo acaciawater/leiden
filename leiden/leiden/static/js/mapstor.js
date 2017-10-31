@@ -156,28 +156,26 @@ function initMap(div,options) {
 	var bodemkaart = L.tileLayer.wms('http://geodata.nationaalgeoregister.nl/bodemkaart50000/wms', {
 		layers: 'bodemkaart50000',
 		format: 'image/png',
-		srs: 'EPSG:3857',
 		opacity: 0.4
 	});
 
 	var ahn25 = L.tileLayer.wms('http://geodata.nationaalgeoregister.nl/ahn2/wms', {
 		layers: 'ahn2_5m',
 		format: 'image/png',
-		srs: 'EPSG:3857',
 		opacity: 0.4
 	});
 
 	var ahn205 = L.tileLayer.wms('http://geodata.nationaalgeoregister.nl/ahn2/wms', {
 		layers: 'ahn2_05m_non',
 		format: 'image/png',
-		srs: 'EPSG:3857',
 		opacity: 0.4
 	});
 					
 	var ontwatering= L.tileLayer.wms('http://maps.acaciadata.com/geoserver/Leiden/wms', {
-		layers: 'Leiden:ontwatering2010-concept',
+		layers: 'Leiden:ontwatering-wgs84',
 		format: 'image/png',
 		transparent: true,
+		//propertyName: 'perc_ont',
 		opacity: 0.5
 	});
 	
