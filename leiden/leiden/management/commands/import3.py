@@ -4,19 +4,19 @@ Created on Oct 27, 2017
 
 @author: theo
 '''
-from acacia.meetnet.models import Network, Well, Datalogger,\
-    LoggerDatasource
-from acacia.data.models import Project
-from django.contrib.gis.geos import Point
-from acacia.data.util import RDNEW
-from django.core.management.base import BaseCommand
-import logging
 import csv 
-from acacia.meetnet.util import register_well, register_screen
-from datetime import datetime
+import logging
+
 from django.conf import settings
-from acacia.data.models import Generator
 from django.contrib.auth.models import User
+from django.contrib.gis.geos import Point
+from django.core.management.base import BaseCommand
+
+from acacia.data.models import Generator
+from acacia.data.util import RDNEW
+from acacia.meetnet.models import Network, Well, Datalogger, LoggerDatasource
+from acacia.meetnet.util import register_well, register_screen
+
 logger = logging.getLogger(__name__)
 
 def asfloat(x):
