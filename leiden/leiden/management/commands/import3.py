@@ -4,6 +4,7 @@ Created on Oct 27, 2017
 
 @author: theo
 '''
+import os 
 import csv 
 import logging
 
@@ -16,6 +17,8 @@ from acacia.data.models import Generator
 from acacia.data.util import RDNEW
 from acacia.meetnet.models import Network, Well, Datalogger, LoggerDatasource
 from acacia.meetnet.util import register_well, register_screen
+from datetime import datetime
+import pytz
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +39,7 @@ class Command(BaseCommand):
         net = Network.objects.first()
         ellitrack = Generator.objects.get(name='Ellitrack')
         admin = User.objects.get(username='theo')
+        tz = pytz.timezone('Europe/Amsterdam')
         for fname in files:
             logger.info('Importing wells from {}'.format(fname))
             with open(fname) as f:
@@ -60,6 +64,16 @@ class Command(BaseCommand):
                         well, created = Well.objects.update_or_create(network=net,name=name,defaults=defaults)
                         if created:
                             register_well(well)
+                        
+                        fotodir = os.path.join(os.path.dirname(fname),'fotos')
+                        for nr in range(1,4):
+                            fotonr = row['Foto %d'%nr]
+                            if fotonr:
+                                fotoname = '%s.jpg' % fotonr
+                                fotopath = os.path.join(fotodir,fotoname)
+                                if os.path.exists(fotopath):
+                                    with open(fotopath,'rb') as f:
+                                        well.add_photo(fotoname,f)
                             
                         defaults = {
                             'top': asfloat(row['Bovenkant filter']),
@@ -72,15 +86,19 @@ class Command(BaseCommand):
                             register_screen(screen)
                             logger.info('Added {screen}'.format(screen=str(screen)))
                             numcreated += 1 
+                        
                         serial = row['Logger ID']
                         if serial:
                             datalogger, created = Datalogger.objects.get_or_create(serial=serial,defaults={'model':'etd'})
                             if created:
                                 logger.info('Created logger {}'.format(serial))
-
+                        
+                            start = row['Datum installatie'] or '2017-09-01 12:00'
+                            start_date = datetime.strptime(start,'%Y-%m-%d %H:%M')
                             defaults = {
                                 'screen': screen,
-                                'start_date' : row['Datum installatie'] or '2017-09-01 12:00',
+                                'start_date' : tz.localize(start_date),
+                                'refpnt': screen.refpnt,
                                 'depth': asfloat(row['Kabellengte']),
                                 }
                             pos, created = datalogger.loggerpos_set.update_or_create(logger=datalogger,defaults=defaults)
