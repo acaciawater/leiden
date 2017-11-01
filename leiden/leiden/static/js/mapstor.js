@@ -105,6 +105,34 @@ function addMarkerGroup(map) {
 	});
 }
 
+var hilite = null;
+var hiliteVisible = false;
+
+function showHilite(marker) {
+	
+	if (marker == null || theMap == null)
+		return;
+	
+	if (!hilite) {
+		hilite= new L.circleMarker(marker.getLatLng(),{radius:20,color:"green"})
+			.addTo(theMap);
+	}
+	else {
+		hilite.setLatLng(marker.getLatLng());
+		if (!hiliteVisible) {
+			theMap.addLayer(hilite);
+		}
+	}
+	hiliteVisible = true;
+}
+
+function hideHilite() {
+	if (hiliteVisible) {
+		hilite.remove();
+		hiliteVisible = false;
+	}
+}
+
 var panTimeoutId = undefined;
 
 function panToMarker(marker) {
@@ -118,12 +146,15 @@ function clearPanTimer() {
 
 function showMarker(m) {
 	marker = markers[m];
+	showHilite(marker);
 	panTimeoutId = window.setTimeout(panToMarker,1000,marker);
 }
 
 function hideMarker(m) {
+	hideHilite();
 	clearPanTimer();
 }
+
 
 /**
  * Initializes leaflet map
