@@ -155,6 +155,67 @@ function hideMarker(m) {
 	clearPanTimer();
 }
 
+L.Control.LabelControl = L.Control.extend({
+    onAdd: function(map) {
+    	var container = L.DomUtil.create('div','leaflet-bar leaflet-control leaflet-control-custom');
+        container.style.backgroundColor = 'white';
+        container.style.height = '26px';
+        container.style.width = '26px';
+    	
+        var img = L.DomUtil.create('i','fa fa-2x fa-tag');
+    	img.style.marginLeft = "4px";
+    	img.style.marginTop = "2px";
+    	container.append(img);
+
+    	L.DomEvent.on(container, 'click', function(e) {
+        	toggleLabels();
+        });
+        
+        return container;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    },
+    
+});
+
+L.control.labelcontrol = function(opts) {
+    return new L.Control.LabelControl(opts);
+}
+
+var labelsShown = true;
+
+function showLabels() {
+	if (!labelsShown) {
+		if (markers) {
+			markers.forEach(function(marker){
+				marker.openTooltip();
+			});
+		} 
+		labelsShown = true;
+	}
+}
+
+function hideLabels() {
+	if (labelsShown) {
+		if (markers) {
+			markers.forEach(function(marker){
+				marker.closeTooltip();
+			}); 
+		} 
+		labelsShown = false;
+	}
+}
+
+function toggleLabels() {
+	if (labelsShown) {
+		hideLabels();
+	}
+	else {
+		showLabels();
+	}
+}
 
 /**
  * Initializes leaflet map
@@ -229,7 +290,9 @@ function initMap(div,options) {
 		// add markers and zoom to extent
 		addMarkers(map,true);
 	}
-	
+
+	var control = L.control.labelcontrol({ position: 'topleft' }).addTo(map);
+
 	map.on('baselayerchange',function(e){changeBaseLayer(e);});
  	map.on('overlayadd',function(e){addOverlay(e);});
  	map.on('overlayremove',function(e){removeOverlay(e);});
