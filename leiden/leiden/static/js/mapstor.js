@@ -159,12 +159,9 @@ L.Control.LabelControl = L.Control.extend({
     onAdd: function(map) {
     	var container = L.DomUtil.create('div','leaflet-bar leaflet-control leaflet-control-custom');
         container.style.backgroundColor = 'white';
-        container.style.height = '26px';
-        container.style.width = '26px';
     	
         var img = L.DomUtil.create('i','fa fa-2x fa-tag');
-    	img.style.marginLeft = "4px";
-    	img.style.marginTop = "2px";
+    	img.style.margin = "2px 3px";
     	container.append(img);
 
     	L.DomEvent.on(container, 'click', function(e) {
