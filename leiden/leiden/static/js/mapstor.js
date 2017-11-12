@@ -158,11 +158,10 @@ function hideMarker(m) {
 L.Control.LabelControl = L.Control.extend({
     onAdd: function(map) {
     	var container = L.DomUtil.create('div','leaflet-bar leaflet-control leaflet-control-custom');
-        container.style.backgroundColor = 'white';
-    	
-        var img = L.DomUtil.create('i','fa fa-lg fa-tags',container);
-    	img.style.margin = "8px 4px";
-    	img.title = "Labels";
+        var img = L.DomUtil.create('a','fa fa-lg fa-tags',container);
+    	img.title = 'Toggle labels';
+        img.setAttribute('role','button');
+        img.setAttribute('aria-label','Toggle Labels');
 
     	L.DomEvent.on(container, 'click', function(e) {
         	toggleLabels();
