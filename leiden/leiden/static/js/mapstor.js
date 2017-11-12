@@ -160,9 +160,9 @@ L.Control.LabelControl = L.Control.extend({
     	var container = L.DomUtil.create('div','leaflet-bar leaflet-control leaflet-control-custom');
         container.style.backgroundColor = 'white';
     	
-        var img = L.DomUtil.create('i','fa fa-2x fa-tag');
-    	img.style.margin = "2px 3px";
-    	container.append(img);
+        var img = L.DomUtil.create('i','fa fa-lg fa-tags',container);
+    	img.style.margin = "8px 4px";
+    	img.title = "Labels";
 
     	L.DomEvent.on(container, 'click', function(e) {
         	toggleLabels();
