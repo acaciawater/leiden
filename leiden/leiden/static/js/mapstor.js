@@ -73,7 +73,7 @@ function addMarkers(map,zoom) {
 		$.each(data, function(key,val) {
 			marker = L.marker([val.lat, val.lon],{title:val.name, icon: redBullet});
 			markers[val.id] = marker;
-			marker.bindPopup("Loading...");
+			marker.bindPopup("Loading...",{maxWidth: "auto"});
 			marker.bindTooltip(val.name,{permanent:true,className:"label",opacity:0.7,direction:"top",offset:[0,-10]});
 			marker.on("click", function(e) {
 				var popup = e.target.getPopup();

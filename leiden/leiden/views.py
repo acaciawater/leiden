@@ -29,7 +29,7 @@ class HomeView(NetworkView):
 class PopupView(DetailView):
     """ returns html response for leaflet popup """
     model = Well
-    template_name = 'leiden/popup.html'
+    template_name = 'meetnet/well_info.html'
     
 def well_locations(request):
     """ return json response with well locations
