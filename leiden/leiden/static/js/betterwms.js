@@ -7,12 +7,20 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
     // Triggered when the layer is added to a map.
     L.TileLayer.WMS.prototype.onAdd.call(this, map);
     map.on('click', this.getFeatureInfo, this);
+    if ('legend' in this.wmsParams) {
+    	var legend = this.wmsParams['legend']; 
+    	legend.addTo(map);
+    }
   },
   
   onRemove: function (map) {
     // Triggered when the layer is removed from a map.
     L.TileLayer.WMS.prototype.onRemove.call(this, map);
     map.off('click', this.getFeatureInfo, this);
+    if ('legend' in this.wmsParams) {
+    	var legend = this.wmsParams['legend']; 
+    	legend.remove();
+    }
   },
   
   getFeatureInfo: function (evt) {

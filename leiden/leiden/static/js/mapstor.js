@@ -5,6 +5,7 @@
 var overlays = new Set();
 var baseMaps;
 var overlayMaps;
+
 var storage = sessionStorage; // or localStorage?
 
 function addOverlay(e) {
@@ -59,8 +60,8 @@ function restoreBounds(map) {
 
 var redBullet = L.icon({
     iconUrl: '/static/red_marker16.png',
-    iconSize: [16, 16],
-    iconAnchor: [8, 8],
+    iconSize: [12, 12],
+    iconAnchor: [6,6],
     popupAnchor: [0, 0],
 });
 
@@ -259,18 +260,25 @@ function initMap(div,options) {
 		opacity: 0.4
 	});
 					
-	var ontwatering= L.tileLayer.wms('http://maps.acaciadata.com/geoserver/Leiden/wms', {
+	var ontwateringsLegend = L.wmsLegend({
+		position:'topright', 
+		title:'Ontwatering', 
+		uri:'http://maps.acaciadata.com/geoserver/Leiden/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=Leiden:ontwatering-wgs84'
+	});
+
+	var ontwatering = L.tileLayer.betterWms('http://maps.acaciadata.com/geoserver/Leiden/wms', {
 		layers: 'Leiden:ontwatering-wgs84',
 		format: 'image/png',
 		transparent: true,
-		//propertyName: 'perc_ont',
-		opacity: 0.5
+		propertyName: 'perc_ont',
+		opacity: 0.5,
+		legend: ontwateringsLegend
 	});
-	
+
 	var map = L.map(div,options);
 
  	baseMaps = {'Openstreetmap': osm, 'Google roads': roads, 'Google satellite': satellite, 'ESRI topo': topo, 'ESRI imagery': imagery};
-	overlayMaps = {'Ontwatering': ontwatering, 'Bodemkaart': bodemkaart, 'AHN2 (5m)': ahn25};
+	overlayMaps = {'Ontwatering': ontwatering};
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
 	
 	if (!restoreMap(map)) {
