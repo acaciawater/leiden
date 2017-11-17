@@ -1,7 +1,7 @@
-<h4><a href="{% url 'meetnet:well-detail' object.id %}">Waarnemingsput {{object}}</a></h4>
+<h4><a href="{% url 'meetnet:well-detail' object.id %}">{% trans "Monitoring well" %} {{object}}</a></h4>
 <p>{{object.full_address}}</p>
 {% with object.last_measurement as last %}
 {% if last %}
-<p>Laatste meting {{last.value|floatformat:2}}m op {{last.date}}</p>
+<p>{% trans "Last measurement" %} {{last.value|floatformat:2}}m op {{last.date}}</p>
 {%endif%}
 {% endwith %}

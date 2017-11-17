@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-17 11:29+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: leiden/settings.py:111
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: leiden/settings.py:112
+msgid "English"
+msgstr "Engels"
+
+#: leiden/settings.py:137
+msgid "Administration of monitoring network Leiden"
+msgstr "Beheer van grondwatermeetnet Gemeente Leiden"
+
+#: leiden/templates/leiden/base.html:65 leiden/templates/leiden/home.html:3
+msgid "Monitoring network"
+msgstr "Meetnet"
+
+#: leiden/templates/leiden/base.html:76
+msgid "Admin"
+msgstr "Beheer"
+
+#: leiden/templates/leiden/base.html:82
+msgid "Log out"
+msgstr "Uitloggen"
+
+#: leiden/templates/leiden/base.html:83
+msgid "Change password"
+msgstr "Wachtwoord veranderen"
+
+#: leiden/templates/leiden/base.html:87
+msgid "Log in"
+msgstr "Inloggen"
+
+#: leiden/templates/leiden/home.html:40
+msgid "Wells"
+msgstr "Putten"
+
+#: leiden/templates/leiden/home.html:40
+msgid "Number of wells"
+msgstr "Aantal putten"
+
+#: leiden/templates/leiden/popup.html:1
+#, fuzzy
+#| msgid "Monitoring network"
+msgid "Monitoring well"
+msgstr "Meetnet"
+
+#: leiden/templates/leiden/popup.html:5
+msgid "Last measurement"
+msgstr "Laatste meting"
+
+#: leiden/templates/meetnet/chart_detail.html:6
+msgid "Home"
+msgstr "Startpagina"
+
+#~ msgid "Download chart"
+#~ msgstr "Grafiek downloaden"
+
+#~ msgid "Download data"
+#~ msgstr "Gegevens downloaden"

@@ -1,5 +1,6 @@
 {% extends 'leiden/base.html' %}
-{% block title %}Grondwatermeetnet {{object}} {% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Monitoring network" %} {{object}} {% endblock %}
 {% block style %}
 {{ block.super }}
 <link rel="stylesheet" href="//unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
@@ -15,6 +16,7 @@
 <script src="//unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 <script src="//unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js"></script>
 <script src="//unpkg.com/leaflet.markercluster@1.0.5/dist/leaflet.markercluster.js"></script>
+<script src="//unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="/static/js/betterwms.js"></script>
 <script src="/static/js/mapstor.js"></script>
@@ -35,7 +37,7 @@ $(function() {
 <div id="map" class="full col-sm-9"></div>
 {% block list %}
 <div id="list" class="list-group scroll col-sm-3">
-<a href="#" class="list-group-item active">Putten<span id="badge" title="Aantal putten" class="badge">{{network.well_set.count}}</a>
+<a href="#" class="list-group-item active">{%trans "Wells"%}<span id="badge" title='{% trans "Number of wells" %}' class="badge">{{network.well_set.count}}</a>
 {% for well in network.well_set.all %}
 <a onmouseover="showMarker({{well.id}});" onmouseout="hideMarker({{well.id}});" href="{% url 'meetnet:well-detail' well.id %}" class="list-group-item" ><span><img class="bullet" src='/static/bullet_ball_blue.png'></img>{{well.name}}</span>
 {% if well.straat %}<br/><div class='text-muted'><small>{{well.straat}}, {{well.plaats}}</small></div>{% endif %}

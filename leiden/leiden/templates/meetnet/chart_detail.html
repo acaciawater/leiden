@@ -1,8 +1,9 @@
 {% extends 'highchart.html' %}
-{% block title %}Grafiek {{object}}{% endblock title %}
+{% load i18n %}
+{% block title %}{% trans Chart %} {{object}}{% endblock title %}
 {% block breadcrumbs %}
 <ol class="breadcrumb">
-	<li><a href="/">Home</a></li>
+	<li><a href="/">{% trans "Home" %}</a></li>
 </ol>
 {% endblock breadcrumbs %} 
 {% block brandname %}

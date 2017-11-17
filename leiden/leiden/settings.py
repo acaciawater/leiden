@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,6 +23,9 @@ SITE_ID = 1
 DEBUG = True
 
 ALLOWED_HOSTS = ['.acaciadata.com','localhost']
+
+# for debug toolbar
+INTERNAL_IPS = '127.0.0.1'
 
 # Application definition
 INSTALLED_APPS = [
@@ -38,18 +42,18 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'bootstrap3',
     'leiden.apps.LeidenConfig',
-    'acacia',
     'acacia.data',
     'acacia.meetnet',
     'acacia.data.knmi',
     'acacia.ahn',
+    'acacia',
     'registration',
     'django_redis',
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -101,7 +105,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'nl-nl'
+LANGUAGE_CODE = 'nl'
+
+LANGUAGES = [
+    ('nl',_('Dutch')),
+    ('en',_('English'))
+]
 
 TIME_ZONE = 'Europe/Amsterdam'
 
@@ -110,7 +119,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -126,7 +134,7 @@ UPLOAD_THUMBNAILS = 'thumbnails'
 UPLOAD_IMAGES = 'images' 
 
 # Grapelli admin
-GRAPPELLI_ADMIN_TITLE='Beheer van grondwatermeetnet Gemeente Leiden'
+GRAPPELLI_ADMIN_TITLE=_('Administration of monitoring network Leiden')
 
 # registration stuff
 ACCOUNT_ACTIVATION_DAYS = 7
