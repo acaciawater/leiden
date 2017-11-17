@@ -259,7 +259,12 @@ function initMap(div,options) {
 		format: 'image/png',
 		opacity: 0.4
 	});
-					
+
+	var ahn35 = L.esri.imageMapLayer({
+		url: 'https://ahn.arcgisonline.nl/arcgis/rest/services/Hoogtebestand/AHN3_5m/ImageServer',
+		opacity: 0.5,
+	});
+	
 	var ontwateringsLegend = L.wmsLegend({
 		position:'topright', 
 		title:'Ontwatering', 
@@ -275,10 +280,16 @@ function initMap(div,options) {
 		legend: ontwateringsLegend
 	});
 
+	var molenwaard = L.tileLayer.wms('http://maps.acaciadata.com/geoserver/Molenwaard/wms', {
+		layers: 'Molenwaard:ahn3filledMerc',
+		format: 'image/png',
+		tiled: true,
+		transparent: true
+	});
 	var map = L.map(div,options);
 
  	baseMaps = {'Openstreetmap': osm, 'Google roads': roads, 'Google satellite': satellite, 'ESRI topo': topo, 'ESRI imagery': imagery};
-	overlayMaps = {'Ontwatering': ontwatering};
+	overlayMaps = {'Molenwaard': molenwaard, 'AHN3 maaiveld': ahn35, 'Ontwatering': ontwatering};
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
 	
 	if (!restoreMap(map)) {
