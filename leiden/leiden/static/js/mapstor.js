@@ -242,24 +242,6 @@ function initMap(div,options) {
 		attribution: 'Tiles &copy; Esri'
 	});
 	
-	var bodemkaart = L.tileLayer.wms('http://geodata.nationaalgeoregister.nl/bodemkaart50000/wms', {
-		layers: 'bodemkaart50000',
-		format: 'image/png',
-		opacity: 0.4
-	});
-
-	var ahn25 = L.tileLayer.wms('http://geodata.nationaalgeoregister.nl/ahn2/wms', {
-		layers: 'ahn2_5m',
-		format: 'image/png',
-		opacity: 0.4
-	});
-
-	var ahn205 = L.tileLayer.wms('http://geodata.nationaalgeoregister.nl/ahn2/wms', {
-		layers: 'ahn2_05m_non',
-		format: 'image/png',
-		opacity: 0.4
-	});
-
 	var ahn35 = L.esri.imageMapLayer({
 		url: 'https://ahn.arcgisonline.nl/arcgis/rest/services/Hoogtebestand/AHN3_5m/ImageServer',
 		opacity: 0.5,
@@ -267,7 +249,7 @@ function initMap(div,options) {
 	
 	var ontwateringsLegend = L.wmsLegend({
 		position:'topright', 
-		title:'Ontwatering', 
+		title:'&#37; ontwatering &lt; 0.7m', 
 		uri:'http://maps.acaciadata.com/geoserver/Leiden/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=Leiden:ontwatering-wgs84'
 	});
 
@@ -280,16 +262,10 @@ function initMap(div,options) {
 		legend: ontwateringsLegend
 	});
 
-	var molenwaard = L.tileLayer.wms('http://maps.acaciadata.com/geoserver/Molenwaard/wms', {
-		layers: 'Molenwaard:ahn3filledMerc',
-		format: 'image/png',
-		tiled: true,
-		transparent: true
-	});
 	var map = L.map(div,options);
 
  	baseMaps = {'Openstreetmap': osm, 'Google roads': roads, 'Google satellite': satellite, 'ESRI topo': topo, 'ESRI imagery': imagery};
-	overlayMaps = {'Molenwaard': molenwaard, 'AHN3 maaiveld': ahn35, 'Ontwatering': ontwatering};
+	overlayMaps = {'Ontwatering': ontwatering, 'Maaiveld': ahn35};
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
 	
 	if (!restoreMap(map)) {
