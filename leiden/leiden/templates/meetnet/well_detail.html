@@ -166,20 +166,20 @@ a img {
 										</tr>
 									{% endfor %}
 								{% endif %}
-							<tr>
-								<td>{{s.nr}}</td>
-								<td>{{s.top|floatformat:2|default:'onbekend'}}</td>
-								<td>{{s.bottom|floatformat:2|default:'onbekend'}}</td>
-								<td colspan="3">alle</td>
-								<td>{{s.start|date:'d M Y'}}</td>
-								<td>{{s.stop|date:'d M Y'}}</td>
-						   		{% with s.stats as stats %}
-									<td>{{stats.count|floatformat:0|default:''}}</td>
-									<td>{{stats.p10|floatformat:3|default:''}}</td>
-									<td>{{stats.p50|floatformat:3|default:''}}</td>
-									<td>{{stats.p90|floatformat:3|default:''}}</td>
-								{% endwith %}
-							</tr>	
+<!-- 							<tr> -->
+<!-- 								<td>{{s.nr}}</td> -->
+<!-- 								<td>{{s.top|floatformat:2|default:'onbekend'}}</td> -->
+<!-- 								<td>{{s.bottom|floatformat:2|default:'onbekend'}}</td> -->
+<!-- 								<td colspan="3">alle</td> -->
+<!-- 								<td>{{s.start|date:'d M Y'}}</td> -->
+<!-- 								<td>{{s.stop|date:'d M Y'}}</td> -->
+<!-- 						   		{% with s.stats as stats %} -->
+<!-- 									<td>{{stats.count|floatformat:0|default:''}}</td> -->
+<!-- 									<td>{{stats.p10|floatformat:3|default:''}}</td> -->
+<!-- 									<td>{{stats.p50|floatformat:3|default:''}}</td> -->
+<!-- 									<td>{{stats.p90|floatformat:3|default:''}}</td> -->
+<!-- 								{% endwith %} -->
+<!-- 							</tr>	 -->
 						    {% endfor %} 
 						</tbody>
 		
