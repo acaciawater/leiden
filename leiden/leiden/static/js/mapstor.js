@@ -246,6 +246,11 @@ function initMap(div,options) {
 		url: 'https://ahn.arcgisonline.nl/arcgis/rest/services/Hoogtebestand/AHN3_5m/ImageServer',
 		opacity: 0.5,
 	});
+
+	ahn35.bindPopup(function(err, results, response){
+		var value = results.pixel.properties.value;
+		return (value) ? 'Maaiveldhoogte: ' + value : false;
+	});
 	
 	var ontwateringsLegend = L.wmsLegend({
 		position:'topright', 
