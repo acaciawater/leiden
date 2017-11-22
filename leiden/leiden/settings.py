@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import sys
 from django.utils.translation import ugettext_lazy as _
+from django.conf.global_settings import LOGIN_URL
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'leiden.middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'leiden.urls'
@@ -120,6 +122,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/accounts/login'
+LOGIN_EXEMPT_URLS = ('^$', '^locs/', '^pop/', '^/accounts/', '^/static/', '^/media/')
+ 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

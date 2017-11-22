@@ -20,11 +20,12 @@ td a img {
 <tr><td class="col-md-3">Adres</div></td><td class="col-md-9">{{object.full_address}}</td></tr>
 {% with object.last_measurement as last %}
 {% if last %}
-<tr><td>Laatste meting</td><td>{{last.value|floatformat:2}}m op {{last.date}}</td></tr>
+<tr><td>Laatste meting</td><td>{{last.date}}</td></tr>
+<tr><td>Laatste waarde</td><td>{{last.value|floatformat:2}} m tov NAP</td></tr>
 {%endif%}
 {% endwith %}
 <tr></tr>
-{% if object.has_data %}
+{% if request.user.is_authenticated and object.has_data %}
 <tr><td colspan="2">
 	<a href="{% url 'meetnet:chart-detail' object.id %}" target="_blank"><img width="100%" src="{{object.chart.url}}"></a>
 </td></tr>
