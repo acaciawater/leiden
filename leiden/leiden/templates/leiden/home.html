@@ -43,9 +43,11 @@ $(function() {
 	class="list-group-item"
 	href="{% url 'meetnet:well-detail' well.id %}" 
 	onmouseover="showMarker({{well.id}});" 
-	onmouseout="hideMarker({{well.id}});" 
-	title="laatst gezien: {{last.date|date:"D d M Y"}}
+	onmouseout="hideMarker({{well.id}});"
+	{% if last %}
+		title="laatst gezien: {{last.date|date:"D d M Y"|default:"nooit"}}
 ({{last.date|timesince}} geleden)"
+	{% endif %}
 >
 <span><img class="bullet" src='/static/bullet_ball_{{color}}.png'></img>{{well.name}}</span>
 {% if well.straat %}<br/><div class='text-muted'><small>{{well.straat}}, {{well.plaats}}</small></div>{% endif %}
