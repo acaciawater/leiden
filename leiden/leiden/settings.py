@@ -123,7 +123,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = '/accounts/login'
-LOGIN_EXEMPT_URLS = ('^$', '^locs/', '^pop/', '^/accounts/', '^/static/', '^/media/')
+LOGIN_EXEMPT_URLS = ('^$', '^locs/', '^pop/', '^/accounts/', '^/static/', 'media/')
  
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
