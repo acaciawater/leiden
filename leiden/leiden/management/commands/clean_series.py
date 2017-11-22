@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 deleted, _what = series.datapoints.filter(date__lt=first.start_date).delete()
                 for pos in screen.loggerpos_set.all():
                     depth = pos.depth
-                    min_level = refpnt - depth + 0.02 # 2 cm above sensor
+                    min_level = refpnt - depth + 0.010 # 10 mm above sensor
                     pts = series.filter_points(start=pos.start_date,stop=pos.end_date).filter(value__lt=min_level)
                     count, _what = pts.delete()
                     deleted += count                
