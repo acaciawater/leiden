@@ -10,6 +10,22 @@ from django.http.response import JsonResponse, HttpResponseServerError
 from django.views.generic.detail import DetailView
 import json
 from django.conf import settings
+from django.utils import timezone
+
+def statuscolor(last):
+    """ returns color for bullets on home page.
+    Green is less than 1 day old, yellow is 1 - 2 days, red is 3 - 7 days and gray is more than one week old 
+     """
+    if last:
+        now = timezone.now()
+        age = now - last.date
+        if age.days < 1:
+            return 'green' 
+        elif age.days < 2:
+            return 'yellow'
+        elif age.days < 7:
+            return 'red' 
+    return 'grey'
 
 class HomeView(NetworkView):
     template_name = 'leiden/home.html'
@@ -21,6 +37,11 @@ class HomeView(NetworkView):
             'zoom': 12 }
         context['api_key'] = settings.GOOGLE_MAPS_API_KEY
         context['options'] = json.dumps(options)
+        welldata = []
+        for w in Well.objects.all():
+            last = w.last_measurement()
+            welldata.append((w,last,statuscolor(last)))
+        context['wells'] = welldata
         return context
 
     def get_object(self):

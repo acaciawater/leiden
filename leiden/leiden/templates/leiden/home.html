@@ -38,8 +38,16 @@ $(function() {
 {% block list %}
 <div id="list" class="list-group scroll col-sm-2">
 <a href="#" class="list-group-item active">{%trans "Wells"%}<span id="badge" title='{% trans "Number of wells" %}' class="badge">{{network.well_set.count}}</a>
-{% for well in network.well_set.all %}
-<a onmouseover="showMarker({{well.id}});" onmouseout="hideMarker({{well.id}});" href="{% url 'meetnet:well-detail' well.id %}" class="list-group-item" ><span><img class="bullet" src='/static/bullet_ball_blue.png'></img>{{well.name}}</span>
+{% for well, last, color in wells %}
+<a 
+	class="list-group-item"
+	href="{% url 'meetnet:well-detail' well.id %}" 
+	onmouseover="showMarker({{well.id}});" 
+	onmouseout="hideMarker({{well.id}});" 
+	title="laatst gezien: {{last.date|date:"D d M Y"}}
+({{last.date|timesince}} geleden)"
+>
+<span><img class="bullet" src='/static/bullet_ball_{{color}}.png'></img>{{well.name}}</span>
 {% if well.straat %}<br/><div class='text-muted'><small>{{well.straat}}, {{well.plaats}}</small></div>{% endif %}
 </a>
 {% endfor %}
