@@ -253,7 +253,7 @@ function initMap(div,options) {
 	});
 	
 	var ontwateringsLegend = L.wmsLegend({
-		position:'topright', 
+		position:'bottomright', 
 		title:'&#37; ontwatering &lt; 0.7m', 
 		uri:'http://maps.acaciadata.com/geoserver/Leiden/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=Leiden:ontwatering-wgs84'
 	});
@@ -266,11 +266,41 @@ function initMap(div,options) {
 		opacity: 0.5,
 		legend: ontwateringsLegend
 	});
+	
+	var gwsLegend = L.wmsLegend({
+		position:'bottomright', 
+		title:'Grondwaterstand<br>(m tov NAP)', 
+		uri:'http://maps.acaciadata.com/geoserver/Leiden/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=Leiden:grondwaterstanden'
+	});
 
+	var gws = L.tileLayer.betterWms('http://maps.acaciadata.com/geoserver/Leiden/wms', {
+		layers: 'Leiden:grondwaterstanden',
+		format: 'image/png',
+		transparent: true,
+		opacity: 0.5,
+		legend: gwsLegend
+		
+	});
+
+	var ghgLegend = L.wmsLegend({
+		position:'bottomright', 
+		title:'GHG (m tov NAP)', 
+		uri:'http://maps.acaciadata.com/geoserver/Leiden/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=Leiden:Gem hoogste gws'
+	});
+
+	var ghg = L.tileLayer.betterWms('http://maps.acaciadata.com/geoserver/Leiden/wms', {
+		layers: 'Leiden:Gem hoogste gws',
+		format: 'image/png',
+		transparent: true,
+		opacity: 0.5,
+		legend: ghgLegend
+		
+	});
+	
 	var map = L.map(div,options);
 
  	baseMaps = {'Openstreetmap': osm, 'Google roads': roads, 'Google satellite': satellite, 'ESRI topo': topo, 'ESRI imagery': imagery};
-	overlayMaps = {'Ontwatering': ontwatering, 'Maaiveld': ahn35};
+	overlayMaps = {'Ontwatering': ontwatering, 'Grondwaterstand': gws, 'GHG': ghg, 'Maaiveld': ahn35};
 	L.control.layers(baseMaps, overlayMaps).addTo(map);
 	
 	if (!restoreMap(map)) {
