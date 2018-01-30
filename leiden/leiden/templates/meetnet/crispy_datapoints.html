@@ -1,0 +1,6 @@
+{% extends 'leiden/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>Handpeilingen peilbuis {{series.mlocatie.name}}</h3>
+{% crispy formset helper %}
+{% endblock %}

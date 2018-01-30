@@ -1,0 +1,19 @@
+{% extends 'leiden/base.html' %}
+{% load i18n %}
+{% block script %}
+{{ block.super }}
+{% endblock %}
+{% block style %}
+{{ block.super }}
+{% endblock %}
+{% block content %}
+<h3>Handpeilingen peilbuis {{series.mlocatie.name}}</h4>
+<form method="post" action="">
+    {{ formset.management_form }}
+    <table>
+        {% for form in formset %}
+        {{ form }}
+        {% endfor %}
+    </table>
+</form>
+{% endblock %}

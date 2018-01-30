@@ -1,0 +1,18 @@
+{% extends 'leiden/base.html' %}
+{% load i18n %}
+{% load django_tables2 %}
+{% load bootstrap3 %}
+{% block script %}
+{{ block.super }}
+{% endblock %}
+{% block style %}
+{{ block.super }}
+{% endblock %}
+{% block content %}
+<div class="row row-fluid">
+<div class="col col-md-4">
+<h3>Handpeilingen {{series.mlocatie.name}}</h4>
+{% render_table table %} 
+</div>
+</div>
+{% endblock %}
