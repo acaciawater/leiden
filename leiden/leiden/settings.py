@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.gis',
+#     'django_tables2',
+#     'crispy_forms',
     'debug_toolbar',
     'bootstrap3',
     'leiden.apps.LeidenConfig',
@@ -140,6 +142,8 @@ UPLOAD_IMAGES = 'images'
 
 # Grapelli admin
 GRAPPELLI_ADMIN_TITLE=_('Administration of monitoring network Leiden')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # registration stuff
 ACCOUNT_ACTIVATION_DAYS = 7
