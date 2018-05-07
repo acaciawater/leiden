@@ -51,6 +51,9 @@ class Command(BaseCommand):
                     logger.info('Importing {}'.format(name))
                     x = asfloat(row['X'])
                     y = asfloat(row['Y'])
+                    if x is None or y is None:
+                        logger.info('Well {} skipped: No coordinates'.format(name))
+                        continue
                     try:
                         defaults = {
                             'location': Point(x,y,srid=RDNEW),
@@ -86,7 +89,7 @@ class Command(BaseCommand):
                                 with open(logpath,'rb') as f:
                                     well.set_log(logname,f)
                             
-                        continue # only update well data, photos and logs 
+                        #continue # only update well data, photos and logs 
 
                         defaults = {
                             'top': asfloat(row['Bovenkant filter']),
