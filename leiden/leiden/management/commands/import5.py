@@ -47,7 +47,7 @@ class Command(BaseCommand):
                 numupdated = 0
                 reader = csv.DictReader(f)
                 for row in reader:
-                    name = row['ID']
+                    name = row['ID'].strip()
                     logger.info('Importing {}'.format(name))
                     x = asfloat(row['X'])
                     y = asfloat(row['Y'])

@@ -1,5 +1,5 @@
 {% extends 'bootbase.html' %} 
-{% block title %}Grondwaterput {{object.nitg}} {% endblock title %} 
+{% block title %}Grondwaterput {{object.nitg|default:object.name}} {% endblock title %} 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
 	<li><a href="/">Home</a></li>
