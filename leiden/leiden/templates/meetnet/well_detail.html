@@ -10,7 +10,17 @@
 	<a href="{{object.homepage}}"><img
 		src="/media/{{object.network.logo}}" /></a>
 </div>
-{% endblock %} 
+{% endblock %}
+
+{% block navbar-right %}
+{% if nav.prev %}
+<li><a href="{%url 'meetnet:well-detail' nav.prev.id %}">{{nav.prev|title}}</a></li>
+{% endif %}
+{% if nav.next %}
+<li><a href="{%url 'meetnet:well-detail' nav.next.id %}">{{nav.next|title}}</a></li>
+{% endif %}
+{% endblock %}
+ 
 {% block extrastyle %}
 <style>
 html, body {
