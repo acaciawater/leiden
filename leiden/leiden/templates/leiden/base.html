@@ -1,3 +1,28 @@
+<!–– Cookie ––>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#237afc"
+    },
+    "button": {
+      "background": "#fff",
+      "text": "#237afc"
+    }
+  },
+  "content": {
+    "message": "Deze website maakt gebruik van cookies om ervoor te zorgen dat u de beste ervaring op onze website krijgt.",
+    "dismiss": "Sluiten",
+    "link": "Meer informatie",
+    "href": "http://www.acaciadata.com/cookiebeleid.html"
+  }
+})});
+</script>
+<!–– End Cookie ––>
+
 {% load staticfiles %}
 {% load i18n %}
 <!DOCTYPE html>
