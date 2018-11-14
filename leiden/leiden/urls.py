@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^pop/(?P<pk>\d+)', PopupView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^validation/', include('acacia.validation.urls',namespace='validation')),
 #     url(r'^excel/(?P<pk>\d+)', series_for_jExcel, name='jexcel'),
 #     url(r'^edit/(?P<pk>\d+)', datapoint_editor),
 ]
