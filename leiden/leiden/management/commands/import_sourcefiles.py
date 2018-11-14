@@ -37,6 +37,11 @@ class Command(BaseCommand):
                 action='store',
                 type=str,
                 dest='filename')
+        parser.add_argument('-r','--replace',
+                action='store_true',
+                default=False,
+                dest='replace',
+                help='replace existing source files')
 
     def addfile(self,filename):
         pass
@@ -44,6 +49,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         dirname = options.get('dirname',None)
         filename = options.get('filename',None)
+        replace = options.get('replace',False)
         if not dirname or filename:
             logger.error('supply either dirname or filename')
             return
@@ -65,7 +71,19 @@ class Command(BaseCommand):
                             exist = ds.sourcefiles.filter(crc=crc).first()
                             if exist:
                                 logger.warning('Sourcefile {} already exists for logger {}'.format(filename,serial))
-                                continue
-                            sf = SourceFile(name=filename,datasource=ds,user=admin,crc=crc)
-                            sf.file.save(filename, ContentFile(contents), save=True)
-                            logger.info('Added {}'.format(filename))
+                                sf = exist
+                            else:
+                                sf = SourceFile(name=filename,datasource=ds,user=admin,crc=crc)
+                                sf.file.save(filename, ContentFile(contents), save=True)
+                                logger.info('Added {}'.format(filename))
+                            if replace:
+                                start = sf.start
+                                stop = sf.stop
+                                candidates = ds.sourcefiles.exclude(start__gt=stop)
+                                candidates = candidates.exclude(stop__lt=start)
+                                candidates = candidates.exclude(pk=sf.pk)
+                                logger.info('deleting {} sourcefiles'.format(candidates.count()))
+#                                 for i,c in enumerate(candidates.order_by('start')):
+#                                     logger.info('{} {} {} {}'.format(i+1, c.name, c.start, c.stop))
+                                candidates.delete()
+                                
