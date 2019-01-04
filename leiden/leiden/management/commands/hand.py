@@ -60,7 +60,9 @@ class Command(BaseCommand):
                                 'timezone': tz.zone})
                             if created:
                                 logger.info('Created manual series "{}"'.format(unicode(series)))
-                            series.datapoints.update_or_create(date = date, defaults = {'value': screen.refpnt - value})
+                            point, created = series.datapoints.update_or_create(date = date, defaults = {'value': screen.refpnt - value})
+                            if created:
+                                logger.info('{}: created datapoint {}'.format(unicode(screen), point.date))
                         except Exception as e:
                             logger.error('{}: {}'.format(name,e))
                 
