@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.gis',
 #     'django_tables2',
-#     'crispy_forms',
+    'crispy_forms',
     'debug_toolbar',
     'bootstrap3',
     'leiden.apps.LeidenConfig',
