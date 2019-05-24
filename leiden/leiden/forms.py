@@ -69,6 +69,7 @@ class AddWellForm(forms.Form):
             raise forms.ValidationError('A well with name "{}" already exists.'.format(name))
         except Well.DoesNotExist:
             pass
+        
         srid = self.cleaned_data['srid']
         x = self.cleaned_data['xcoord']
         y = self.cleaned_data['ycoord']
@@ -83,21 +84,21 @@ class AddWellForm(forms.Form):
         if error or (x < 2 or x > 8 or y < 50 or y > 54):
             raise forms.ValidationError('Coordinates of the well are not in The Netherlands.')
         
-        ref = self.cleaned_data['refpnt']
-        top = self.cleaned_data['top']
-        bottom = self.cleaned_data['bottom']
-        depth = self.cleaned_data['depth']
-        if z and abs(ref-z) > 2:
-            self.add_error('refpnt', 'top of casing differs too much from surface level.')
-            self.add_error('zcoord', 'surface level differs too much from top of casing.')
-        if top < bottom:
-            self.add_error('top','top of screen should be above bottom.')
-        if bottom < depth:
-            self.add_error('bottom','bottom of screen should be above bottom of casing.')
-        
-        logger_depth = self.cleaned_data['logger_depth']
-        if logger_depth < depth:
-            self.add_error('logger_depth','Logger can not be installed below bottom of casing.')
+#         ref = self.cleaned_data['refpnt']
+#         top = self.cleaned_data['top']
+#         bottom = self.cleaned_data['bottom']
+#         depth = self.cleaned_data['depth']
+#         if z and abs(ref-z) > 2:
+#             self.add_error('refpnt', 'top of casing differs too much from surface level.')
+#             self.add_error('zcoord', 'surface level differs too much from top of casing.')
+#         if top < bottom:
+#             self.add_error('top','top of screen should be above bottom.')
+#         if bottom < depth:
+#             self.add_error('bottom','bottom of screen should be above bottom of casing.')
+#         
+#         logger_depth = self.cleaned_data['logger_depth']
+#         if logger_depth < depth:
+#             self.add_error('logger_depth','Logger can not be installed below bottom of casing.')
 
     def __init__(self, *args, **kwargs):
         super(AddWellForm, self).__init__(*args, **kwargs)
