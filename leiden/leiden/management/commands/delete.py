@@ -57,7 +57,7 @@ class Command(BaseCommand):
                                     if dry:
                                         num_deleted = query.count()
                                     else:
-                                        num_deleted = query.delete()
+                                        num_deleted, what = query.delete()
                                     count += num_deleted
                                     logger.info('{}: deleted {} points between {} and {}'.format(unicode(screen), num_deleted, start, stop))
                                 else:
