@@ -32,7 +32,8 @@ class Command(BaseCommand):
         files = options['files']
         dry = options['dry']
         net = Network.objects.first()
-        tz = pytz.timezone('Europe/Amsterdam')
+#         tz = pytz.timezone('Europe/Amsterdam')
+        tz = pytz.timezone('UTC')
         count = 0
         for fname in files:
             logger.info('Deleting measurements from {}'.format(fname))
