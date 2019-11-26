@@ -28,33 +28,31 @@ ALLOWED_HOSTS = ['.acaciadata.com','localhost']
 # for debug toolbar
 # INTERNAL_IPS = '127.0.0.1'
 
-# Application definition
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'grappelli',
     'polymorphic',
-    'django.contrib.admin',
+    'django.contrib.admin.apps.SimpleAdminConfig', # avoid autodiscover()
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'django.contrib.gis',
     'corsheaders',
-#     'django_tables2',
-    'crispy_forms',
     'debug_toolbar',
     'bootstrap3',
     'leiden.apps.LeidenConfig',
     'acacia.data',
-    'acacia.validation',
     'acacia.meetnet',
+    'acacia.meetnet.bro',
     'acacia.data.knmi',
     'acacia.ahn',
     'acacia',
+    'acacia.validation',
     'registration',
     'django_redis',
-]
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
