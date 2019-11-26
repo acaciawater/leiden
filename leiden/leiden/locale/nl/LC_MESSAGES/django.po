@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-17 11:29+0100\n"
+"POT-Creation-Date: 2019-11-26 14:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,62 +18,159 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: leiden/settings.py:111
+#: forms.py:49
+msgid "Coordinate system"
+msgstr ""
+
+#: forms.py:50
+msgid "X-Coordinate"
+msgstr ""
+
+#: forms.py:51
+msgid "Y-Coordinate"
+msgstr ""
+
+#: forms.py:52
+msgid "Z-Coordinate"
+msgstr ""
+
+#: forms.py:52
+msgid "Surface level in m above sea level"
+msgstr ""
+
+#: forms.py:53
+msgid "Construction date"
+msgstr ""
+
+#: forms.py:55
+msgid "Top of casing"
+msgstr ""
+
+#: forms.py:55
+msgid "Usually top of casing."
+msgstr ""
+
+#: forms.py:56
+msgid "Top of screen"
+msgstr ""
+
+#: forms.py:57
+msgid "Bottom of screen"
+msgstr ""
+
+#: forms.py:58
+msgid "Bottom of casing"
+msgstr ""
+
+#: forms.py:59
+msgid "Type of logger"
+msgstr ""
+
+#: forms.py:60
+msgid "Logger serial number"
+msgstr ""
+
+#: forms.py:61
+msgid "Depth of logger"
+msgstr ""
+
+#: settings.py:116
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: leiden/settings.py:112
+#: settings.py:117
 msgid "English"
 msgstr "Engels"
 
-#: leiden/settings.py:137
+#: settings.py:145
 msgid "Administration of monitoring network Leiden"
 msgstr "Beheer van grondwatermeetnet Gemeente Leiden"
 
-#: leiden/templates/leiden/base.html:65 leiden/templates/leiden/home.html:3
+#: templates/leiden/base.html:90 templates/leiden/home.html:3
 msgid "Monitoring network"
 msgstr "Meetnet"
 
-#: leiden/templates/leiden/base.html:76
+#: templates/leiden/base.html:101
 msgid "Admin"
 msgstr "Beheer"
 
-#: leiden/templates/leiden/base.html:82
+#: templates/leiden/base.html:105
+#, fuzzy
+#| msgid "Admin"
+msgid "Admin page"
+msgstr "Beheer"
+
+#: templates/leiden/base.html:106
+msgid "BRO registratie"
+msgstr ""
+
+#: templates/leiden/base.html:107
+#, fuzzy
+#| msgid "Last measurement"
+msgid "Manual measurements"
+msgstr "Laatste meting"
+
+#: templates/leiden/base.html:108
+msgid "Upload files"
+msgstr ""
+
+#: templates/leiden/base.html:109
+msgid "Upload Excel with metadata"
+msgstr ""
+
+#: templates/leiden/base.html:111 templates/leiden/base.html:137
+#, fuzzy
+#| msgid "Download data"
+msgid "Download files"
+msgstr "Gegevens downloaden"
+
+#: templates/leiden/base.html:118
 msgid "Log out"
 msgstr "Uitloggen"
 
-#: leiden/templates/leiden/base.html:83
+#: templates/leiden/base.html:119
 msgid "Change password"
 msgstr "Wachtwoord veranderen"
 
-#: leiden/templates/leiden/base.html:87
+#: templates/leiden/base.html:123
 msgid "Log in"
 msgstr "Inloggen"
 
-#: leiden/templates/leiden/home.html:40
+#: templates/leiden/base.html:141
+msgid "Dear"
+msgstr ""
+
+#: templates/leiden/base.html:145
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\tClick CSV or NITG to dowload all timeseries from the monitoring "
+"network %(object)s.<br>\n"
+"\t\t\t\tWe will send an email with a download link to %(email)s when the "
+"files are ready for download.\n"
+"\t\t\t\t"
+msgstr ""
+
+#: templates/leiden/base.html:155
+msgid "Cancel"
+msgstr ""
+
+#: templates/leiden/home.html:46
 msgid "Wells"
 msgstr "Putten"
 
-#: leiden/templates/leiden/home.html:40
+#: templates/leiden/home.html:46
 msgid "Number of wells"
 msgstr "Aantal putten"
 
-#: leiden/templates/leiden/popup.html:1
-#, fuzzy
-#| msgid "Monitoring network"
-msgid "Monitoring well"
-msgstr "Meetnet"
-
-#: leiden/templates/leiden/popup.html:5
-msgid "Last measurement"
-msgstr "Laatste meting"
-
-#: leiden/templates/meetnet/chart_detail.html:6
+#: templates/meetnet/chart_detail.html:6
 msgid "Home"
 msgstr "Startpagina"
 
+#, fuzzy
+#~| msgid "Monitoring network"
+#~ msgid "Monitoring well"
+#~ msgstr "Meetnet"
+
 #~ msgid "Download chart"
 #~ msgstr "Grafiek downloaden"
-
-#~ msgid "Download data"
-#~ msgstr "Gegevens downloaden"

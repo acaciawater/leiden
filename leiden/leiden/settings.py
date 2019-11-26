@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['.acaciadata.com','localhost']
 INSTALLED_APPS = (
     'grappelli',
     'polymorphic',
-    'django.contrib.admin.apps.SimpleAdminConfig', # avoid autodiscover()
+    'django.contrib.admin',#.apps.SimpleAdminConfig', # avoid autodiscover()
     'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.contenttypes',
