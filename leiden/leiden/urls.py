@@ -19,7 +19,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from .views import well_locations, PopupView, HomeView
 from leiden.views import AddWellView
-#from leiden.views import datapoint_editor, series_for_jExcel
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
@@ -32,8 +31,6 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^validation/', include('acacia.validation.urls',namespace='validation')),
     url(r'^addwell/', AddWellView.as_view(), name='addwell'),
-#     url(r'^excel/(?P<pk>\d+)', series_for_jExcel, name='jexcel'),
-#     url(r'^edit/(?P<pk>\d+)', datapoint_editor),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
