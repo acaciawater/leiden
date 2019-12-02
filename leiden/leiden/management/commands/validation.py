@@ -30,7 +30,7 @@ def import_file(fname, user):
             logger.info('Validation created for {} of screen {}'.format(series, screen))
         logger.info('Processing {}'.format(fname))
         process_file(fname, user, pk=validation.pk)
-        validation.accept(user=user)
+        #validation.accept(user=user)
     except Well.DoesNotExist:
         logger.error('Well {} not found'.format(name))
     except Screen.DoesNotExist:
