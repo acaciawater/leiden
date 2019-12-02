@@ -37,6 +37,7 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.EXPORT_URL, document_root=settings.EXPORT_ROOT)
+urlpatterns += static(settings.LOGGING_URL, document_root=settings.LOGGING_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

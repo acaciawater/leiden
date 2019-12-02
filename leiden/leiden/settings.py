@@ -13,14 +13,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import sys
 from django.utils.translation import ugettext_lazy as _
-from django.conf.global_settings import LOGIN_URL
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SITE_ID = 1
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY DEBUG: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['.acaciadata.com','localhost']
@@ -134,6 +133,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+LOGGING_URL = '/logs/'
+LOGGING_ROOT = os.path.join(BASE_DIR, 'logs')
+
 EXPORT_URL = '/export/'
 EXPORT_ROOT = os.path.join(BASE_DIR, 'export')
 
@@ -199,12 +201,12 @@ LOGGING = {
     'loggers': {
         'django.request': {
             'handlers': ['django'],
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'propagate': True,
         },
         'acacia': {
             'handlers': ['file',],
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'propagate': True,
         },
         'leiden.management': {
@@ -214,7 +216,7 @@ LOGGING = {
         },
         'upload': {
             'handlers': ['upload',],
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'propagate': True,
         }
     },
