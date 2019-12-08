@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-26 14:53+0100\n"
+"POT-Creation-Date: 2019-12-08 01:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,69 +20,69 @@ msgstr ""
 
 #: forms.py:49
 msgid "Coordinate system"
-msgstr ""
+msgstr "Coordinaten systeem"
 
 #: forms.py:50
 msgid "X-Coordinate"
-msgstr ""
+msgstr "X-Coordinaat"
 
 #: forms.py:51
 msgid "Y-Coordinate"
-msgstr ""
+msgstr "Y-coordinaat"
 
 #: forms.py:52
 msgid "Z-Coordinate"
-msgstr ""
+msgstr "Z-Coordinaat"
 
 #: forms.py:52
 msgid "Surface level in m above sea level"
-msgstr ""
+msgstr "Maaivel in meter boven zeeveau"
 
 #: forms.py:53
 msgid "Construction date"
-msgstr ""
+msgstr "Constructiedatum"
 
 #: forms.py:55
 msgid "Top of casing"
-msgstr ""
+msgstr "Bovenkant casing"
 
 #: forms.py:55
 msgid "Usually top of casing."
-msgstr ""
+msgstr "Normaliter bovenkant casing"
 
 #: forms.py:56
 msgid "Top of screen"
-msgstr ""
+msgstr "Bovenkant filter"
 
 #: forms.py:57
 msgid "Bottom of screen"
-msgstr ""
+msgstr "Onderkant filter"
 
 #: forms.py:58
 msgid "Bottom of casing"
-msgstr ""
+msgstr "Onderkant buis"
 
 #: forms.py:59
 msgid "Type of logger"
-msgstr ""
+msgstr "Type logger"
 
 #: forms.py:60
 msgid "Logger serial number"
-msgstr ""
+msgstr "Serienummer logger"
 
 #: forms.py:61
 msgid "Depth of logger"
-msgstr ""
+msgstr "Installatiediepte van de logger"
 
-#: settings.py:116
+#: settings.py:115
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: settings.py:117
+#: settings.py:116
 msgid "English"
 msgstr "Engels"
 
-#: settings.py:145
+#: settings.py:147
 msgid "Administration of monitoring network Leiden"
 msgstr "Beheer van grondwatermeetnet Gemeente Leiden"
 
@@ -90,37 +90,30 @@ msgstr "Beheer van grondwatermeetnet Gemeente Leiden"
 msgid "Monitoring network"
 msgstr "Meetnet"
 
-#: templates/leiden/base.html:101
+#: templates/leiden/base.html:105
 msgid "Admin"
 msgstr "Beheer"
 
-#: templates/leiden/base.html:105
-#, fuzzy
-#| msgid "Admin"
 msgid "Admin page"
-msgstr "Beheer"
+msgstr "Beheer pagina"
 
 #: templates/leiden/base.html:106
 msgid "BRO registratie"
 msgstr ""
 
 #: templates/leiden/base.html:107
-#, fuzzy
-#| msgid "Last measurement"
 msgid "Manual measurements"
-msgstr "Laatste meting"
+msgstr "Handmetingen"
 
 #: templates/leiden/base.html:108
 msgid "Upload files"
-msgstr ""
+msgstr "Loggerdata uploaden (mon)"
 
 #: templates/leiden/base.html:109
 msgid "Upload Excel with metadata"
-msgstr ""
+msgstr "Metadata uploaden (excel)"
 
 #: templates/leiden/base.html:111 templates/leiden/base.html:137
-#, fuzzy
-#| msgid "Download data"
 msgid "Download files"
 msgstr "Gegevens downloaden"
 
@@ -167,10 +160,8 @@ msgstr "Aantal putten"
 msgid "Home"
 msgstr "Startpagina"
 
-#, fuzzy
-#~| msgid "Monitoring network"
-#~ msgid "Monitoring well"
-#~ msgstr "Meetnet"
+msgid "Monitoring well"
+msgstr "Monitoring put"
 
-#~ msgid "Download chart"
-#~ msgstr "Grafiek downloaden"
+msgid "Download chart"
+msgstr "Grafiek downloaden"
