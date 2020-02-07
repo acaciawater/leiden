@@ -34,11 +34,10 @@ class Command(BaseCommand):
             remarks = 'Moved from {}'.format(curpos.screen)
             )
         curpos.end_date = newpos.start_date
+        curpos.remarks = 'Moved to {}'.format(newpos.screen)
         curpos.save()
         logger.info('Moved logger {} from {} to {}'.format(datalogger,curpos.screen,newpos.screen))
 
-        candidates = curpos.logger.datasource.filter(start__gte=curpos.start_date,stop__lte=curpos.end_date)
-        curpos.files.remove(candidates)
-        newpos.files.add(candidates)
-        logger.info('{} files moved from {} to {}'.format(added,curpos,newpos)
-        
+        curpos.update_files()
+        added=newpos.update_files()
+        logger.info('{} files moved from {} to {}'.format(added,curpos,newpos))
