@@ -211,7 +211,17 @@ LOGGING = {
         },
         'leiden.management': {
             'handlers': ['console',],
-            'level': 'INFO',
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'acacia.management': {
+            'handlers': ['console',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'acacia.meetnet.management': {
+            'handlers': ['console',],
+            'level': 'DEBUG',
             'propagate': True,
         },
         'upload': {
