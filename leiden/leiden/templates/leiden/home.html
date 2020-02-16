@@ -51,7 +51,7 @@ $(function() {
 	onmouseover="showMarker({{well.id}});" 
 	onmouseout="hideMarker({{well.id}});"
 	{% if last %}
-		title="laatst gezien: {{last.date|date:"D d M Y"|default:"nooit"}} ({{last.date|timesince}} geleden)"
+		title="laatste meting: {{last.date|date:"D d M Y"|default:"geen"}} ({{last.date|timesince}} geleden)"
 	{% endif %}
 >
 <span><img class="bullet" src='/static/bullet_ball_{{color}}.png'></img>{{well.name}}</span>
