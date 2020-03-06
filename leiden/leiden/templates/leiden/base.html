@@ -150,14 +150,30 @@ window.cookieconsent.initialise({
 				</p>
 		      </div>
 		      <div class="modal-footer">
-				<a href="{% url 'meetnet:email-network' object.id %}" class="btn btn-default" data-dismiss=" modal">CSV</a>
-				<a href="{% url 'meetnet:email-network-nitg' object.id %}" class="btn btn-default" data-dismiss=" modal">NITG</a>
-		        <button type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Cancel" %}</button>
+				  <div class="form-inline">
+				  	<span class="pull-left">
+			    		<input type="checkbox" id="raw" name="raw">
+			    		<label for="raw">{% trans "Raw data" %}</label>
+			    	</span>
+  					<a id="csv" href="{% url 'meetnet:email-network' object.id %}" class="btn btn-default" data-dismiss=" modal">CSV</a>
+					<a id="nitg" href="{% url 'meetnet:email-network-nitg' object.id %}" class="btn btn-default" data-dismiss=" modal">NITG</a>
+		        	<button type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Cancel" %}</button>
+		          </div>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 	</div> <!-- wrapper -->
+	<script>
+		$("#raw").change(function () {
+			// change url of download links to both valid and raw data or only valid data
+			const type = this.checked ? "both": "valid"
+			let href = $("#csv").attr("href").split('?')[0] + '?type=' + type
+			$("#csv").attr("href",href)
+			href = $("#nitg").attr("href").split('?')[0] + '?type=' + type 
+			$("#nitg").attr("href",href)
+		})
+	</script>
     {% block footer %}
     {% endblock footer %}
   </body>

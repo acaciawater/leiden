@@ -80,7 +80,7 @@ $(function () {
 	                }, {
 	                    text: 'Download tijdreeks',
 	                    onclick: function () {
-	            			window.location="{% url 'meetnet:download-well' object.id %}";
+	            			window.location="{% url 'meetnet:download-well' object.id %}?type=both";
 	                    },
 	                    separator: false
 	                }]
@@ -96,6 +96,6 @@ $(function () {
 {{ block.super }}
 <br/>
 <div class="text-center">
-<a href="{% url 'meetnet:download-well' object.id %}" class="btn btn-primary active" data-toggle="tooltip" title="Tijdreeksen van deze put downloaden als csv bestand" id="download">Downloaden</a>
+<a href="{% url 'meetnet:download-well' object.id %}?type=both" class="btn btn-primary active" data-toggle="tooltip" title="Tijdreeksen van deze put downloaden als csv bestand" id="download">Downloaden</a>
 </div>
 {% endblock %}
