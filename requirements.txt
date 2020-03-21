@@ -39,7 +39,7 @@ python-dateutil==2.6.1
 python-mimeparse==1.6.0
 pytz==2017.2
 redis==2.10.5
-requests==2.13.0
+requests==2.20.0
 scipy==0.19.1
 simplejson==3.11.1
 six==1.10.0
