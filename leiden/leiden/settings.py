@@ -22,7 +22,11 @@ SITE_ID = 1
 # SECURITY DEBUG: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.acaciadata.com','localhost']
+# ALLOWED_HOSTS = ['.acaciadata.com', 'localhost']
+ALLOWED_HOSTS = ['*']
+
+# for debug toolbar
+# INTERNAL_IPS = '127.0.0.1'
 
 # for debug toolbar
 # INTERNAL_IPS = '127.0.0.1'
@@ -38,6 +42,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'rest_framework',
+    'rest_framework_gis',
+    'rest_framework_filters',
+    'django_filters',
     'corsheaders',
     'debug_toolbar',
     'bootstrap3',
@@ -53,7 +61,20 @@ INSTALLED_APPS = (
     'django_redis',
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'COERCE_DECIMAL_TO_STRING': False,
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework_filters.backends.DjangoFilterBackend',),
+#    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100            
+}
+
 MIDDLEWARE = [
+    'acacia.middleware.FilterHostMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -63,7 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'leiden.middleware.LoginRequiredMiddleware'
+#    'leiden.middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'leiden.urls'
