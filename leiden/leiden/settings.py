@@ -24,6 +24,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['.acaciadata.com', 'localhost']
 ALLOWED_HOSTS = ['*']
+FILTER_HOSTS = ['.acaciadata.com', 'localhost']
 
 # for debug toolbar
 # INTERNAL_IPS = '127.0.0.1'
