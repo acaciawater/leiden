@@ -25,7 +25,7 @@ td a img {
 {%endif%}
 {% endwith %}
 <tr></tr>
-{% if request.user.is_authenticated and object.has_data %}
+{% if object.has_data %}
 <tr><td colspan="2">
 	<a href="{% url 'meetnet:chart-detail' object.id %}" target="_blank"><img width="100%" src="{{object.chart.url}}"></a>
 </td></tr>
