@@ -32,7 +32,7 @@ class Command(BaseCommand):
         files = options['files']
         admin = User.objects.filter(is_superuser=True).first()
         wells = set()
-        tz=pytz.timezone('Europe/Amsterdam')
+        tz=pytz.timezone('Etc/GMT-1') # NL-wintertijd
         for pattern in files:
             for fname in glob.glob(pattern):
                 logger.info('Importing data from {}'.format(fname))
