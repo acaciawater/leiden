@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 
 from acacia.meetnet.models import LoggerPos
 from datetime import timedelta
+from acacia.data.models import Series
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +14,7 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         # nwe loggers: serienummer = 2005xxxx
+        baro = Series.objects.get(name='Luchtdruk Voorschoten')
         for pos in LoggerPos.objects.filter(logger__serial__startswith='2005').order_by('screen__well'):
             screen = pos.screen
             start = pos.start_date
@@ -29,7 +31,9 @@ class Command(BaseCommand):
             logger_date = min(levels.index)
             loggerwaarde = levels[logger_date]
             
-            logger.debug('pos: {}, start: {}, hand: {},{}, logger: {},{}, verschil: {}'.format(
-                pos, start, hand_date, handpeiling, logger_date, loggerwaarde, loggerwaarde-handpeiling)
+            hpa = baro.at(logger_date)
+            
+            logger.debug('pos: {}, start: {}, hand: {},{}, logger: {},{}, verschil: {}, luchtdruk: {}'.format(
+                pos, start, hand_date, handpeiling, logger_date, loggerwaarde, loggerwaarde-handpeiling, hpa.value)
                 )
             
