@@ -29,7 +29,7 @@ class Command(BaseCommand):
             logger_date = min(levels.index)
             loggerwaarde = levels[logger_date]
             
-            logger.debug('pos: {}, start: {}, hand: {},{}, logger: {},{}'.format(
-                pos, start, hand_date, handpeiling, logger_date, loggerwaarde)
+            logger.debug('pos: {}, start: {}, hand: {},{}, logger: {},{}, verschil: {}'.format(
+                pos, start, hand_date, handpeiling, logger_date, loggerwaarde, loggerwaarde-handpeiling)
                 )
             
