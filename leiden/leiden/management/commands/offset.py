@@ -1,4 +1,5 @@
 import logging
+import json
 
 from django.core.management.base import BaseCommand
 
@@ -9,6 +10,10 @@ from acacia.meetnet.util import recomp
 
 logger = logging.getLogger(__name__)
 
+def uncompensated(pos):
+    ''' returns true is logger produces uncompensated data '''
+    return any(filter(lambda d: json.loads(d.config).get('compensated',True)==False, 
+                      set(f.datasource for f in pos.files.all())))
 
 class Command(BaseCommand):
     help = 'corrigeer voor offset nieuwe loggers'
@@ -38,6 +43,8 @@ class Command(BaseCommand):
         queryset = queryset.exclude(remarks__contains='aangepast')
         
         for pos in queryset.order_by('screen__well'):
+            if not uncompensated(pos):
+                continue
             screen = pos.screen
             start_date = aware(pos.start_date-timedelta(days=1),'utc').replace(hour=0,minute=0,second=0)
             hand = screen.get_manual_series(start=start_date)
