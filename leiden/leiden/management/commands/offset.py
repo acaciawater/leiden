@@ -26,8 +26,8 @@ class Command(BaseCommand):
         baro = Series.objects.get(name='Luchtdruk Voorschoten')
         
         # tolerantie voor aanpassingen
-        limit = 0.1
-        tolerance = timedelta(hours=4)
+        limit = 0.2
+        tolerance = timedelta(hours=6)
 
         dry = options.get('dry')
         well = options.get('well')
