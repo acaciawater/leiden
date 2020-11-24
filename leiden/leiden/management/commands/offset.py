@@ -33,6 +33,9 @@ class Command(BaseCommand):
             
         # nwe loggers: serienummer = 2005xxxx
         queryset = queryset.filter(logger__serial__startswith='2005')
+
+        # Niet twee keer aanpassen...
+        queryset = queryset.exclude(remarks__contains='aangepast')
         
         for pos in queryset.order_by('screen__well'):
             screen = pos.screen
@@ -59,10 +62,11 @@ class Command(BaseCommand):
                 refpnt = round(pos.refpnt+offset,3)
                 logger.debug('{},{},{},{:+.1f} cm'.format(pos, pos.refpnt, refpnt, offset*100))
                 if not dry:
-                    pos.remarks = 'ophangpunt {} aangepast met {:+.2f} cm voor luchtdruk van {:.1f} hPa tijdens installatie.'.format(pos.refpnt, offset*100, hpa)
+                    pos.remarks = 'ophangpunt ({}) aangepast met {:+.2f} cm voor luchtdruk van {:.1f} hPa tijdens installatie.'.format(pos.refpnt, offset*100, hpa)
                     pos.refpnt = refpnt
                     pos.save()
                     series = screen.find_series()
                     if series:
+                        logger.debug('Tijdreeks {} aanpassen...'.format(series))
                         success = recomp(screen, series, start=pos.start_date,stop=pos.end_date)
-                    
+                        # TODO: revalidate and reload xl validation file
