@@ -49,5 +49,5 @@ Sphinx==1.5.5
 sphinx-rtd-theme==0.2.5b1
 sqlparse==0.2.3
 subprocess32==3.2.7
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 xlrd==1.1.0
