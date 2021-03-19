@@ -22,7 +22,7 @@ GDAL==2.1.0
 idna==2.5
 imagesize==0.7.1
 ipaddress==1.0.18
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 matplotlib==2.0.2
 numpy==1.13.1
