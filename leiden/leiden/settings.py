@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'acacia.data',
     'acacia.meetnet',
     'acacia.meetnet.bro',
+    'acacia.meetnet.sensor',
     'acacia.data.knmi',
     'acacia.ahn',
     'acacia',

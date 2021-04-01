@@ -32,7 +32,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^validation/', include('acacia.validation.urls',namespace='validation')),
-    url(r'^addwell/', AddWellView.as_view(), name='addwell'),
+#    url(r'^addwell/', AddWellView.as_view(), name='addwell'),
+    url(r'^sensor/', include('acacia.meetnet.sensor.urls',namespace='sensor')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
